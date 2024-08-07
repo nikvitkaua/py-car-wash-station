@@ -27,7 +27,7 @@ class CarWashStation:
         wash_station_income = 0
 
         for car in cars:
-            wash_station_income += self.wash_single_car(car, self.clean_power)
+            wash_station_income += self.wash_single_car(car)
 
         return round(wash_station_income, 1)
 
@@ -36,12 +36,12 @@ class CarWashStation:
                   * self.average_rating / self.distance_from_city_center)
         return round(result, 1)
 
-    def wash_single_car(self, car: Car, clean_power: int) -> float:
+    def wash_single_car(self, car: Car) -> float:
         income_of_car = 0
 
-        if car.clean_mark < clean_power:
+        if car.clean_mark < self.clean_power:
             income_of_car = self.calculate_washing_price(car)
-            car.clean_mark = clean_power
+            car.clean_mark = self.clean_power
 
         return income_of_car
 
